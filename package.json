@@ -1,0 +1,27 @@
+{
+  "name": "react_app_template",
+  "version": "1.0.0",
+  "description": "React app start files with parcel",
+  "repository": "https://github.com/Drod86/resume-generator.git",
+  "author": "Daniel Rodriguez <daniel.r.rodriguez86@gmail.com>",
+  "license": "MIT",
+  "source": "src/index.html",
+  "browserslist": ">0.3%, defaults, supports es6-module, maintained node versions",
+  "targets": {
+    "default": {
+      "distDir": "./docs"
+    }
+  },
+  "scripts": {
+    "start": "parcel",
+    "build": "rm -rf docs/ dist/ && parcel build --public-url=''"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.9.3",
+    "process": "^0.11.10"
+  }
+}
