@@ -5691,11 +5691,13 @@ var _squareDefault = parcelHelpers.interopDefault(_square);
 var _s = $RefreshSig$();
 function Board() {
     _s();
+    const [xIsNext, setXIsNext] = (0, _react.useState)(true);
     const [squares, setSquares] = (0, _react.useState)(Array(9).fill(null));
     function handleClick(i) {
         const nextSquares = squares.slice();
-        nextSquares[i] = "X";
+        xIsNext ? nextSquares[i] = "X" : nextSquares[i] = "O";
         setSquares(nextSquares);
+        setXIsNext(!xIsNext);
     }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
@@ -5707,7 +5709,7 @@ function Board() {
                         onSquareClick: ()=>handleClick(0)
                     }, void 0, false, {
                         fileName: "src/App.js",
-                        lineNumber: 14,
+                        lineNumber: 17,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
@@ -5715,7 +5717,7 @@ function Board() {
                         onSquareClick: ()=>handleClick(1)
                     }, void 0, false, {
                         fileName: "src/App.js",
-                        lineNumber: 15,
+                        lineNumber: 18,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
@@ -5723,13 +5725,13 @@ function Board() {
                         onSquareClick: ()=>handleClick(2)
                     }, void 0, false, {
                         fileName: "src/App.js",
-                        lineNumber: 16,
+                        lineNumber: 19,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/App.js",
-                lineNumber: 13,
+                lineNumber: 16,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -5740,7 +5742,7 @@ function Board() {
                         onSquareClick: ()=>handleClick(3)
                     }, void 0, false, {
                         fileName: "src/App.js",
-                        lineNumber: 19,
+                        lineNumber: 22,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
@@ -5748,7 +5750,7 @@ function Board() {
                         onSquareClick: ()=>handleClick(4)
                     }, void 0, false, {
                         fileName: "src/App.js",
-                        lineNumber: 20,
+                        lineNumber: 23,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
@@ -5756,13 +5758,13 @@ function Board() {
                         onSquareClick: ()=>handleClick(5)
                     }, void 0, false, {
                         fileName: "src/App.js",
-                        lineNumber: 21,
+                        lineNumber: 24,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/App.js",
-                lineNumber: 18,
+                lineNumber: 21,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -5773,7 +5775,7 @@ function Board() {
                         onSquareClick: ()=>handleClick(6)
                     }, void 0, false, {
                         fileName: "src/App.js",
-                        lineNumber: 24,
+                        lineNumber: 27,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
@@ -5781,7 +5783,7 @@ function Board() {
                         onSquareClick: ()=>handleClick(7)
                     }, void 0, false, {
                         fileName: "src/App.js",
-                        lineNumber: 25,
+                        lineNumber: 28,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
@@ -5789,19 +5791,19 @@ function Board() {
                         onSquareClick: ()=>handleClick(8)
                     }, void 0, false, {
                         fileName: "src/App.js",
-                        lineNumber: 26,
+                        lineNumber: 29,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/App.js",
-                lineNumber: 23,
+                lineNumber: 26,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true);
 }
-_s(Board, "OI2riktW80tVaN//212JxRVLLms=");
+_s(Board, "coMecpjTzg1W7KUe5tSm+DrcByQ=");
 _c = Board;
 var _c;
 $RefreshReg$(_c, "Board");
