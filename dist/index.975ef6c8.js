@@ -5684,86 +5684,124 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>Board);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
 var _square = require("./components/Square");
 var _squareDefault = parcelHelpers.interopDefault(_square);
+var _s = $RefreshSig$();
 function Board() {
+    _s();
+    const [squares, setSquares] = (0, _react.useState)(Array(9).fill(null));
+    function handleClick(i) {
+        const nextSquares = squares.slice();
+        nextSquares[i] = "X";
+        setSquares(nextSquares);
+    }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "board-row",
                 children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {}, void 0, false, {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
+                        value: squares[0],
+                        onSquareClick: ()=>handleClick(0)
+                    }, void 0, false, {
                         fileName: "src/App.js",
-                        lineNumber: 6,
+                        lineNumber: 14,
                         columnNumber: 9
                     }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {}, void 0, false, {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
+                        value: squares[1],
+                        onSquareClick: ()=>handleClick(1)
+                    }, void 0, false, {
                         fileName: "src/App.js",
-                        lineNumber: 7,
+                        lineNumber: 15,
                         columnNumber: 9
                     }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {}, void 0, false, {
-                        fileName: "src/App.js",
-                        lineNumber: 8,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "src/App.js",
-                lineNumber: 5,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "board-row",
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {}, void 0, false, {
-                        fileName: "src/App.js",
-                        lineNumber: 11,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {}, void 0, false, {
-                        fileName: "src/App.js",
-                        lineNumber: 12,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {}, void 0, false, {
-                        fileName: "src/App.js",
-                        lineNumber: 13,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "src/App.js",
-                lineNumber: 10,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "board-row",
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {}, void 0, false, {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
+                        value: squares[2],
+                        onSquareClick: ()=>handleClick(2)
+                    }, void 0, false, {
                         fileName: "src/App.js",
                         lineNumber: 16,
                         columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {}, void 0, false, {
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "src/App.js",
+                lineNumber: 13,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "board-row",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
+                        value: squares[3],
+                        onSquareClick: ()=>handleClick(3)
+                    }, void 0, false, {
                         fileName: "src/App.js",
-                        lineNumber: 17,
+                        lineNumber: 19,
                         columnNumber: 9
                     }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {}, void 0, false, {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
+                        value: squares[4],
+                        onSquareClick: ()=>handleClick(4)
+                    }, void 0, false, {
                         fileName: "src/App.js",
-                        lineNumber: 18,
+                        lineNumber: 20,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
+                        value: squares[5],
+                        onSquareClick: ()=>handleClick(5)
+                    }, void 0, false, {
+                        fileName: "src/App.js",
+                        lineNumber: 21,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/App.js",
-                lineNumber: 15,
+                lineNumber: 18,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "board-row",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
+                        value: squares[6],
+                        onSquareClick: ()=>handleClick(6)
+                    }, void 0, false, {
+                        fileName: "src/App.js",
+                        lineNumber: 24,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
+                        value: squares[7],
+                        onSquareClick: ()=>handleClick(7)
+                    }, void 0, false, {
+                        fileName: "src/App.js",
+                        lineNumber: 25,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
+                        value: squares[8],
+                        onSquareClick: ()=>handleClick(8)
+                    }, void 0, false, {
+                        fileName: "src/App.js",
+                        lineNumber: 26,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "src/App.js",
+                lineNumber: 23,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true);
 }
+_s(Board, "OI2riktW80tVaN//212JxRVLLms=");
 _c = Board;
 var _c;
 $RefreshReg$(_c, "Board");
@@ -5773,7 +5811,38 @@ $RefreshReg$(_c, "Board");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./components/Square":"aQ9IO"}],"gkKU3":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./components/Square":"aQ9IO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"aQ9IO":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$aee4 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$aee4.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+function Square({ value, onSquareClick }) {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+        className: "square",
+        onClick: onSquareClick,
+        children: value
+    }, void 0, false, {
+        fileName: "src/components/Square.js",
+        lineNumber: 2,
+        columnNumber: 10
+    }, this);
+}
+_c = Square;
+exports.default = Square;
+var _c;
+$RefreshReg$(_c, "Square");
+
+  $parcel$ReactRefreshHelpers$aee4.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -5941,47 +6010,7 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"7422ead32dcc1e6b":"786KC"}],"aQ9IO":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$aee4 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$aee4.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _s = $RefreshSig$();
-function Square() {
-    _s();
-    const [value, setValue] = (0, _react.useState)(null);
-    function handleClick() {
-        setValue("X");
-    }
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-        className: "square",
-        onClick: handleClick,
-        children: value
-    }, void 0, false, {
-        fileName: "src/components/Square.js",
-        lineNumber: 11,
-        columnNumber: 5
-    }, this);
-}
-_s(Square, "EEjdpY/CSe7/lDQurV9yi1RbKSs=");
-_c = Square;
-exports.default = Square;
-var _c;
-$RefreshReg$(_c, "Square");
-
-  $parcel$ReactRefreshHelpers$aee4.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq"}],"kMfPY":[function() {},{}],"lOjBx":[function(require,module,exports) {
+},{"7422ead32dcc1e6b":"786KC"}],"kMfPY":[function() {},{}],"lOjBx":[function(require,module,exports) {
 "use strict";
 var m = require("aaccff5d309d9239");
 var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
