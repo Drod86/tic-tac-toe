@@ -27171,11 +27171,11 @@ var _boardDefault = parcelHelpers.interopDefault(_board);
 var _s = $RefreshSig$();
 function Game() {
     _s();
-    const [xIsNext, setXIsNext] = (0, _react.useState)(true);
     const [history, setHistory] = (0, _react.useState)([
         Array(9).fill(null)
     ]);
     const [currentMove, setCurrentMove] = (0, _react.useState)(0);
+    const xIsNext = currentMove % 2 === 0;
     const currentSquares = history[currentMove];
     function handlePlay(nextSquares) {
         const newHistory = [
@@ -27184,11 +27184,9 @@ function Game() {
         ];
         setHistory(newHistory);
         setCurrentMove(newHistory.length - 1);
-        setXIsNext(!xIsNext);
     }
     function jumpTo(nextMove) {
         setCurrentMove(nextMove);
-        setXIsNext(nextMove % 2 === 0);
     }
     const moves = history.map((squares, move)=>{
         let description;
@@ -27199,12 +27197,12 @@ function Game() {
                 children: description
             }, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 30,
+                lineNumber: 27,
                 columnNumber: 9
             }, this)
         }, move, false, {
             fileName: "src/App.js",
-            lineNumber: 29,
+            lineNumber: 26,
             columnNumber: 7
         }, this);
     });
@@ -27219,12 +27217,12 @@ function Game() {
                     onPlay: handlePlay
                 }, void 0, false, {
                     fileName: "src/App.js",
-                    lineNumber: 38,
+                    lineNumber: 35,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 37,
+                lineNumber: 34,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27233,22 +27231,22 @@ function Game() {
                     children: moves
                 }, void 0, false, {
                     fileName: "src/App.js",
-                    lineNumber: 41,
+                    lineNumber: 38,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 40,
+                lineNumber: 37,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/App.js",
-        lineNumber: 36,
+        lineNumber: 33,
         columnNumber: 5
     }, this);
 }
-_s(Game, "okRVHJRbGlWwbwRvnd853Um8Ejo=");
+_s(Game, "xZZdy1/aP1agxyjHn6CL01lXnXc=");
 _c = Game;
 var _c;
 $RefreshReg$(_c, "Game");
