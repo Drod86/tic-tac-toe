@@ -27162,232 +27162,103 @@ $parcel$ReactRefreshHelpers$f00f.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "default", ()=>Board);
+parcelHelpers.export(exports, "default", ()=>Game);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _square = require("./components/Square");
-var _squareDefault = parcelHelpers.interopDefault(_square);
+var _board = require("./components/Board");
+var _boardDefault = parcelHelpers.interopDefault(_board);
 var _s = $RefreshSig$();
-// Helper functions
-function calculateWinner(squares) {
-    const lines = [
-        [
-            0,
-            1,
-            2
-        ],
-        [
-            3,
-            4,
-            5
-        ],
-        [
-            6,
-            7,
-            8
-        ],
-        [
-            0,
-            3,
-            6
-        ],
-        [
-            1,
-            4,
-            7
-        ],
-        [
-            2,
-            5,
-            8
-        ],
-        [
-            0,
-            4,
-            8
-        ],
-        [
-            2,
-            4,
-            6
-        ]
-    ];
-    for(let i = 0; i < lines.length; i++){
-        const [a, b, c] = lines[i];
-        if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) return squares[a];
-    }
-    return null;
-}
-function Board() {
+function Game() {
     _s();
     const [xIsNext, setXIsNext] = (0, _react.useState)(true);
-    const [squares, setSquares] = (0, _react.useState)(Array(9).fill(null));
-    function handleClick(i) {
-        if (squares[i] || calculateWinner(squares)) return;
-        const nextSquares = squares.slice();
-        xIsNext ? nextSquares[i] = "X" : nextSquares[i] = "O";
-        setSquares(nextSquares);
+    const [history, setHistory] = (0, _react.useState)([
+        Array(9).fill(null)
+    ]);
+    const [currentMove, setCurrentMove] = (0, _react.useState)(0);
+    const currentSquares = history[currentMove];
+    function handlePlay(nextSquares) {
+        const newHistory = [
+            ...history.slice(0, currentMove + 1),
+            nextSquares
+        ];
+        setHistory(newHistory);
+        setCurrentMove(newHistory.length - 1);
         setXIsNext(!xIsNext);
     }
-    const status = ()=>{
-        const winner = calculateWinner(squares);
-        return winner ? "Winner: " + winner : "Next player: " + (xIsNext ? "X" : "O");
-    };
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "status",
-                children: status()
+    function jumpTo(nextMove) {
+        setCurrentMove(nextMove);
+        setXIsNext(nextMove % 2 === 0);
+    }
+    const moves = history.map((squares, move)=>{
+        let description;
+        move > 0 ? description = "Go to move #" + move : description = "Go to game start";
+        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: ()=>jumpTo(move),
+                children: description
             }, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 45,
+                lineNumber: 30,
+                columnNumber: 9
+            }, this)
+        }, move, false, {
+            fileName: "src/App.js",
+            lineNumber: 29,
+            columnNumber: 7
+        }, this);
+    });
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "game",
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "game-board",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _boardDefault.default), {
+                    xIsNext: xIsNext,
+                    squares: currentSquares,
+                    onPlay: handlePlay
+                }, void 0, false, {
+                    fileName: "src/App.js",
+                    lineNumber: 38,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "src/App.js",
+                lineNumber: 37,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "board-row",
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
-                        value: squares[0],
-                        onSquareClick: ()=>handleClick(0)
-                    }, void 0, false, {
-                        fileName: "src/App.js",
-                        lineNumber: 47,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
-                        value: squares[1],
-                        onSquareClick: ()=>handleClick(1)
-                    }, void 0, false, {
-                        fileName: "src/App.js",
-                        lineNumber: 48,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
-                        value: squares[2],
-                        onSquareClick: ()=>handleClick(2)
-                    }, void 0, false, {
-                        fileName: "src/App.js",
-                        lineNumber: 49,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
+                className: "game-info",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ol", {
+                    children: moves
+                }, void 0, false, {
+                    fileName: "src/App.js",
+                    lineNumber: 41,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 46,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "board-row",
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
-                        value: squares[3],
-                        onSquareClick: ()=>handleClick(3)
-                    }, void 0, false, {
-                        fileName: "src/App.js",
-                        lineNumber: 52,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
-                        value: squares[4],
-                        onSquareClick: ()=>handleClick(4)
-                    }, void 0, false, {
-                        fileName: "src/App.js",
-                        lineNumber: 53,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
-                        value: squares[5],
-                        onSquareClick: ()=>handleClick(5)
-                    }, void 0, false, {
-                        fileName: "src/App.js",
-                        lineNumber: 54,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "src/App.js",
-                lineNumber: 51,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "board-row",
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
-                        value: squares[6],
-                        onSquareClick: ()=>handleClick(6)
-                    }, void 0, false, {
-                        fileName: "src/App.js",
-                        lineNumber: 57,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
-                        value: squares[7],
-                        onSquareClick: ()=>handleClick(7)
-                    }, void 0, false, {
-                        fileName: "src/App.js",
-                        lineNumber: 58,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
-                        value: squares[8],
-                        onSquareClick: ()=>handleClick(8)
-                    }, void 0, false, {
-                        fileName: "src/App.js",
-                        lineNumber: 59,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "src/App.js",
-                lineNumber: 56,
+                lineNumber: 40,
                 columnNumber: 7
             }, this)
         ]
-    }, void 0, true);
+    }, void 0, true, {
+        fileName: "src/App.js",
+        lineNumber: 36,
+        columnNumber: 5
+    }, this);
 }
-_s(Board, "coMecpjTzg1W7KUe5tSm+DrcByQ=");
-_c = Board;
+_s(Game, "okRVHJRbGlWwbwRvnd853Um8Ejo=");
+_c = Game;
 var _c;
-$RefreshReg$(_c, "Board");
+$RefreshReg$(_c, "Game");
 
   $parcel$ReactRefreshHelpers$f00f.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./components/Square":"aQ9IO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"aQ9IO":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$aee4 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$aee4.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-function Square({ value, onSquareClick }) {
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-        className: "square",
-        onClick: onSquareClick,
-        children: value
-    }, void 0, false, {
-        fileName: "src/components/Square.js",
-        lineNumber: 2,
-        columnNumber: 10
-    }, this);
-}
-_c = Square;
-exports.default = Square;
-var _c;
-$RefreshReg$(_c, "Square");
-
-  $parcel$ReactRefreshHelpers$aee4.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gkKU3":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./components/Board":"fiR09"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -27555,6 +27426,232 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"7422ead32dcc1e6b":"786KC"}]},["igKGj","1xC6H","8lqZg"], "8lqZg", "parcelRequire71e0")
+},{"7422ead32dcc1e6b":"786KC"}],"fiR09":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$1c2c = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$1c2c.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>Board);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _square = require("./Square");
+var _squareDefault = parcelHelpers.interopDefault(_square);
+// Helper functions
+function calculateWinner(squares) {
+    const lines = [
+        [
+            0,
+            1,
+            2
+        ],
+        [
+            3,
+            4,
+            5
+        ],
+        [
+            6,
+            7,
+            8
+        ],
+        [
+            0,
+            3,
+            6
+        ],
+        [
+            1,
+            4,
+            7
+        ],
+        [
+            2,
+            5,
+            8
+        ],
+        [
+            0,
+            4,
+            8
+        ],
+        [
+            2,
+            4,
+            6
+        ]
+    ];
+    for(let i = 0; i < lines.length; i++){
+        const [a, b, c] = lines[i];
+        if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) return squares[a];
+    }
+    return null;
+}
+function Board({ xIsNext, squares, onPlay }) {
+    function handleClick(i) {
+        if (squares[i] || calculateWinner(squares)) return;
+        const nextSquares = squares.slice();
+        xIsNext ? nextSquares[i] = "X" : nextSquares[i] = "O";
+        onPlay(nextSquares);
+    }
+    const status = ()=>{
+        const winner = calculateWinner(squares);
+        return winner ? "Winner: " + winner : "Next player: " + (xIsNext ? "X" : "O");
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "status",
+                children: status()
+            }, void 0, false, {
+                fileName: "src/components/Board.js",
+                lineNumber: 42,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "board-row",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
+                        value: squares[0],
+                        onSquareClick: ()=>handleClick(0)
+                    }, void 0, false, {
+                        fileName: "src/components/Board.js",
+                        lineNumber: 44,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
+                        value: squares[1],
+                        onSquareClick: ()=>handleClick(1)
+                    }, void 0, false, {
+                        fileName: "src/components/Board.js",
+                        lineNumber: 45,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
+                        value: squares[2],
+                        onSquareClick: ()=>handleClick(2)
+                    }, void 0, false, {
+                        fileName: "src/components/Board.js",
+                        lineNumber: 46,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Board.js",
+                lineNumber: 43,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "board-row",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
+                        value: squares[3],
+                        onSquareClick: ()=>handleClick(3)
+                    }, void 0, false, {
+                        fileName: "src/components/Board.js",
+                        lineNumber: 49,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
+                        value: squares[4],
+                        onSquareClick: ()=>handleClick(4)
+                    }, void 0, false, {
+                        fileName: "src/components/Board.js",
+                        lineNumber: 50,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
+                        value: squares[5],
+                        onSquareClick: ()=>handleClick(5)
+                    }, void 0, false, {
+                        fileName: "src/components/Board.js",
+                        lineNumber: 51,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Board.js",
+                lineNumber: 48,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "board-row",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
+                        value: squares[6],
+                        onSquareClick: ()=>handleClick(6)
+                    }, void 0, false, {
+                        fileName: "src/components/Board.js",
+                        lineNumber: 54,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
+                        value: squares[7],
+                        onSquareClick: ()=>handleClick(7)
+                    }, void 0, false, {
+                        fileName: "src/components/Board.js",
+                        lineNumber: 55,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _squareDefault.default), {
+                        value: squares[8],
+                        onSquareClick: ()=>handleClick(8)
+                    }, void 0, false, {
+                        fileName: "src/components/Board.js",
+                        lineNumber: 56,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Board.js",
+                lineNumber: 53,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true);
+}
+_c = Board;
+var _c;
+$RefreshReg$(_c, "Board");
+
+  $parcel$ReactRefreshHelpers$1c2c.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Square":"aQ9IO"}],"aQ9IO":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$aee4 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$aee4.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+function Square({ value, onSquareClick }) {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+        className: "square",
+        onClick: onSquareClick,
+        children: value
+    }, void 0, false, {
+        fileName: "src/components/Square.js",
+        lineNumber: 2,
+        columnNumber: 10
+    }, this);
+}
+_c = Square;
+exports.default = Square;
+var _c;
+$RefreshReg$(_c, "Square");
+
+  $parcel$ReactRefreshHelpers$aee4.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["igKGj","1xC6H","8lqZg"], "8lqZg", "parcelRequire71e0")
 
 //# sourceMappingURL=index.975ef6c8.js.map
