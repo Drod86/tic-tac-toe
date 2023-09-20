@@ -15,15 +15,15 @@ function calculateWinner(squares) {
   for (let i = 0; i < lines.length; i++) {
     const [a,b,c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return lines[i];
     }
   }
   return null;
 }
 
 export default function Board({ xIsNext, squares, onPlay}) {
-  
   function handleClick(i) {
+    
     if (squares[i] || calculateWinner(squares)) {
       return;
     }
@@ -34,27 +34,31 @@ export default function Board({ xIsNext, squares, onPlay}) {
 
   const status = () => {
     const winner = calculateWinner(squares);
-    return winner ? "Winner: " + winner : "Next player: " + (xIsNext ? "X" : "O");
+    const end = !squares.includes(null);
+    console.log(end);
+    return winner 
+    ? "Winner: " + squares[winner[0]] 
+    : end 
+      ? "It's a draw!"
+      : "Next player: " + (xIsNext ? "X" : "O");
   }
   
+  const row = (i) => {
+    const winner = calculateWinner(squares);
+    const r = [i, i + 1, i + 2];
+    return (
+      <div className="board-row">
+        {r.map(index => <Square winner={winner && winner.includes(index)} value={squares[index]} onSquareClick={() => handleClick(index)}/>)}
+      </div>
+    )
+  }
+
+  const leftColumn = [0,3,6];
+
   return (
     <>
       <div className="status">{status()}</div>
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)}/>
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)}/>
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)}/>        
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)}/>
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)}/>
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)}/>
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)}/>
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)}/>
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)}/>
-      </div>
+      {leftColumn.map(index => row(index))}
     </>
   )
 }
